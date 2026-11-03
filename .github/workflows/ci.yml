@@ -44,6 +44,7 @@ jobs:
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/github-actions-practice:latest
             ${{ vars.DOCKERHUB_USERNAME }}/github-actions-practice:v2
+            ${{ vars.DOCKERHUB_USERNAME }}/github-actions-practice:v3
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
