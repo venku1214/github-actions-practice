@@ -1,0 +1,15 @@
+name: Self Hosted Runner Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check runner
+        run: |
+          echo "Hello from my WSL self-hosted runner!"
+          hostname
+          kubectl config current-context
