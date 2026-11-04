@@ -1,4 +1,4 @@
-name: Shopping App CI
+name: Shopping App CI/CD
 
 on:
   push:
@@ -50,3 +50,20 @@ jobs:
         with:
           name: github-actions-practice-jar
           path: target/*.jar
+  deploy:
+    name: Deploy to Minikube
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Deploy using Helm
+        run: |
+          helm upgrade --install helm-lab-api ./github-actions-api-chart \
+            --namespace helm-lab \
+            --set image.repository=${{ vars.DOCKERHUB_USERNAME }}/github-actions-practice \
+            --set image.tag=${{ github.sha }} \
+            --wait
