@@ -8,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/api/hello")
     public String hello() {
-        return "Hello from GitHub Actions and Kubernetes!";
+        return "Hello! My application was automatically deployed using GitHub Actions CI/CD!";
     }
 }
